@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: "rabbitmq:management"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  mysql:
+    image: mysql:5.7.24
+    environment:
+      MYSQL_ROOT_PASSWORD: local
+      TERM: linux
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./dump.sql:/tmp/dump.sql
+
+volumes:
+  mysql:
+
